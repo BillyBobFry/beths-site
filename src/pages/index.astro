@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import TextField from "../components/TextField.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main class="flex h-screen flex-col items-center justify-center">
+    <header class="text-title text-h1 text-primary-950 mb-1">
+      Holistic Wellbeing
+    </header>
+    <div class="text-body text-h3 text-primary-900 mb-24">
+      Mobile Aesthetics Practicioner
+    </div>
+    <form
+      class="flex flex-col items-center gap-7 p-10 bg-gradient-to-br from-primary-500 to-primary-500 rounded"
+    >
+      <TextField />
+      <Button>Join the waiting list</Button>
+    </form>
+  </main>
+</Layout>
+
+<style></style>
