@@ -1,11 +1,12 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 			extend: {
 					fontFamily: {
-							body: ["Inter", "Sans Serif"],
-							title: ["Inter", "Sans Serif"]
+							body: ["Noto Sans", "Sans Serif"],
+							title: ["Noto Sans", "Sans Serif"]
 					},
 					fontSize: {
 							body: [
@@ -15,7 +16,7 @@ module.exports = {
 									}
 							],
 							h1: [
-									"3.5rem",
+									"3rem",
 									{
 											lineHeight: "3.75rem"
 									}
@@ -27,7 +28,7 @@ module.exports = {
 									}
 							],
 							h3: [
-									"1.875rem",
+									"1.575rem",
 									{
 											lineHeight: "2.25rem"
 									}

@@ -4,20 +4,60 @@ import Button from "../components/Button.astro";
 import TextField from "../components/TextField.astro";
 ---
 
+<script>
+  const form = document.querySelector("form");
+  const onSubmit = async (event: SubmitEvent) => {
+    if (!form) return;
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    form.reset();
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+    });
+
+    if (response.ok) {
+      const successMessage = document.querySelector("#successMessage");
+      form.style.opacity = "0";
+      form["ariaHidden"] = "true";
+      if (successMessage) {
+        successMessage.textContent = "Thank you for your interest!";
+      }
+    } else {
+      console.error("Failed to submit form");
+    }
+  };
+  form?.addEventListener("submit", onSubmit);
+</script>
+
 <Layout title="Welcome to Astro.">
-  <main class="flex h-screen flex-col items-center justify-center">
-    <header class="text-title text-h1 text-primary-950 mb-1">
+  <main
+    class="flex h-screen flex-col items-center justify-center px-2 bg-gradient-to-br from-stone-200 to-stone-100"
+  >
+    <header
+      class="text-title text-h1 text-primary-950/90 mb-1 font-light text-center"
+    >
       Holistic Wellbeing
     </header>
-    <div class="text-body text-h3 text-primary-900 mb-24">
+    <div class="text-body text-h3 text-primary-900/70 mb-24 text-center">
       Mobile Aesthetics Practicioner
     </div>
-    <form
-      class="flex flex-col items-center gap-7 p-10 bg-gradient-to-br from-primary-500 to-primary-500 rounded"
-    >
-      <TextField />
-      <Button>Join the waiting list</Button>
-    </form>
+    <div class="relative p-10 rounded bg-stone-50">
+      <div
+        id="successMessage"
+        class="w-max text-body text-primary-900 absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+      >
+      </div>
+      <form
+        class="flex flex-col items-center gap-7"
+        method="post"
+        action="/api/register-interest"
+      >
+        <TextField inputType="email" placeholder="Email" name="email" />
+        <Button>Join the waiting list</Button>
+      </form>
+    </div>
   </main>
 </Layout>
 

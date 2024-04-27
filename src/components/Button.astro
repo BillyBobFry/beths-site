@@ -1,4 +1,12 @@
+---
+interface Props {
+  buttonType?: "button" | "submit" | "reset";
+}
+
+const { buttonType } = Astro.props;
+---
+
 <button
   class="bg-emerald-500 h-10 text-white rounded px-3 py-1 flex items-center"
-  ><slot /></button
+  type={buttonType}><slot /></button
 >
